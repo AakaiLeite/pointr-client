@@ -1,7 +1,8 @@
 import { useState } from "react";
 
-// Import Services method 1
+// API Services
 import apiServices from "../../services/api.services.js";
+const { TaskService, NoteService, EventService } = apiServices;
 const taskService = new apiServices.TaskService();
 const noteService = new apiServices.NoteService();
 const eventService = new apiServices.EventService();
