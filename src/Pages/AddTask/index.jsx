@@ -2,7 +2,6 @@ import { useState } from "react";
 
 // API Services
 import apiServices from "../../services/api.services.js";
-const { TaskService } = apiServices;
 const taskService = new apiServices.TaskService();
 
 function AddTask() {
@@ -10,6 +9,14 @@ function AddTask() {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    if (name === "title") setTitle(value);
+    if (name === "date") setDate(value);
+    if (name === "description") setDescription(value);
+    if (name === "completed") setCompleted(value);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,7 +47,7 @@ function AddTask() {
               type="text"
               name="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={handleChange}
             />
           </label>
           <label>
@@ -49,7 +56,7 @@ function AddTask() {
               type="text"
               name="date"
               value={date}
-              onChange={(e) => setDate(e.target.value)}
+              onChange={handleChange}
             />
           </label>
           <label>
@@ -58,7 +65,7 @@ function AddTask() {
               type="text"
               name="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={handleChange}
             />
           </label>
           <label>

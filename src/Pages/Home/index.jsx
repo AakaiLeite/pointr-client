@@ -1,6 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+  const storedToken = localStorage.getItem("authToken");
+
+  const handleCTA = () => {
+    if (storedToken) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div className="home-background">
       <div className="home-container">
@@ -9,7 +19,7 @@ function Home() {
       </div>
       <br />
       <div className="cta-button">
-        <Link to="/login">Get Started</Link>
+        <Link to={handleCTA}>Get Started</Link>
       </div>
     </div>
   );
