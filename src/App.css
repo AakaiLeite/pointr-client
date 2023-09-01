@@ -1,0 +1,46 @@
+.home-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    background-image: url("/public/images/home-background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.562);
+    color: black;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.cta-button {
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    background: #379aff;
+    box-shadow: 10px 10px rgba(0,0,0,0.5);
+    border: 0;
+    border-radius: 5px;
+    min-width: 120px;
+    min-height: 40px;
+    overflow: hidden;
+  }
+
+  .cta-button a {
+    font-family: 'Hind Guntur', sans-serif;
+    font-size: 15px;
+    line-height: 1;
+    color: #fff;
+    text-decoration: none;
+
+  }
