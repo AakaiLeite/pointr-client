@@ -1,16 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/auth.context";
 
 function Home() {
-  const navigate = useNavigate();
-  const storedToken = localStorage.getItem("authToken");
+  const { user } = useContext(AuthContext);
 
-  const handleCTA = () => {
-    if (storedToken) {
-      navigate("/dashboard");
-    } else {
-      navigate("/login");
-    }
-  };
   return (
     <div className="home-background">
       <div className="home-container">
@@ -19,7 +13,8 @@ function Home() {
       </div>
       <br />
       <div className="cta-button">
-        <Link to={handleCTA}>Get Started</Link>
+        {user && <Link to="/dashboard">Your Dashboard</Link>}
+        {!user && <Link to="/login">Get Started</Link>}
       </div>
     </div>
   );
