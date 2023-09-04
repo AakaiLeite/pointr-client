@@ -1,30 +1,29 @@
-import { useState } from "react";
+// Clear ESlint errors
+/* eslint-disable no-unused-vars */
+
+// Import Basics
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
-const { TaskService, NoteService, EventService } = apiServices;
+const { TaskService, EventService } = apiServices;
 const taskService = new apiServices.TaskService();
-const noteService = new apiServices.NoteService();
 const eventService = new apiServices.EventService();
 
+// React Page Component
 function Dashboard() {
+  // State Variables
   const [tasks, setTasks] = useState([]);
-  const [notes, setNotes] = useState([]);
   const [events, setEvents] = useState([]);
 
-  useState(() => {
+  // useEffect Hook to Fetch Data from API Services on Page Load
+  useEffect(() => {
     taskService
       .getAllTasks()
       .then((response) => {
-        console.log(response.data)
+        console.log(response.data);
         setTasks(response.data);
-      })
-      .catch((err) => console.error(err));
-
-    noteService
-      .getAllNotes()
-      .then((response) => {
-        setNotes(response.data);
       })
       .catch((err) => console.error(err));
 
@@ -45,15 +44,11 @@ function Dashboard() {
             <h2>Tasks</h2>
             <ul>
               {tasks.map((task) => {
-                return <li key={task._id}>{task.title}</li>;
-              })}
-            </ul>
-          </div>
-          <div className="dashboard-notes">
-            <h2>Notes</h2>
-            <ul>
-              {notes.map((note) => {
-                return <li key={note._id}>{note.title}</li>;
+                return (
+                  <Link key={task._id} to={`/task/${task._id}`}>
+                    <li>{task.title}</li>
+                  </Link>
+                );
               })}
             </ul>
           </div>
@@ -61,7 +56,11 @@ function Dashboard() {
             <h2>Events</h2>
             <ul>
               {events.map((event) => {
-                return <li key={event._id}>{event.title}</li>;
+                return (
+                  <Link key={event._id} to={`/event/${event._id}`}>
+                    <li>{event.title}</li>
+                  </Link>
+                );
               })}
             </ul>
           </div>

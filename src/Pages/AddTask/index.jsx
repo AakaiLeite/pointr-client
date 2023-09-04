@@ -56,6 +56,7 @@ function AddTask() {
               type="text"
               name="date"
               value={date}
+              placeholder="yyyy-mm-dd"
               onChange={handleChange}
             />
           </label>

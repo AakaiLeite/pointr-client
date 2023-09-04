@@ -6,6 +6,7 @@ function Home() {
   const { user } = useContext(AuthContext);
 
   return (
+  
     <div className="home-background">
       <div className="home-container">
         <h1>Pointr</h1>

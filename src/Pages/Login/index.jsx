@@ -1,4 +1,7 @@
-//
+// Clear ESlint errors
+/* eslint-disable no-unused-vars */
+
+// Import Basics
 import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,21 +10,25 @@ import { AuthContext } from "../../Context/auth.context";
 // Defining the API base URL
 const API_URL = "http://localhost:5005";
 
+// React Page Component
 function Login() {
+  // React Router Navigate
+  const navigate = useNavigate();
+
+  // State Variables
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
 
+  // Destructuring the AuthContext object
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  const navigate = useNavigate();
 
-  // run when the form is submitted
+  // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //Creating a request body object with email and password
     const requestBody = { name, email, password };
 
     axios
@@ -61,7 +68,6 @@ function Login() {
         </label>
         <button type="submit">Log In</button>
       </form>
-
       {errorMessage && <p>{errorMessage}</p>}
       <p>Don't have an account yet?</p>
       <Link to="/signup">Sign Up</Link>

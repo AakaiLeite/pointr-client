@@ -1,19 +1,25 @@
+// Clear ESlint errors
+/* eslint-disable no-unused-vars */
+
+// Import Basics
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// Defining the API base URL
 const API_URL = "http://localhost:5005";
 
 function Signup() {
-
-   
+  // State Variables
   const [name, setName] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setErrorMessage] = useState(null);
 
+  // React Router Navigate
   const navigate = useNavigate();
 
+  // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
 

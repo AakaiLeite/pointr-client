@@ -1,3 +1,4 @@
+// Import Basics
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -9,11 +10,13 @@ function EditTask() {
   const navigate = useNavigate();
   const { taskId } = useParams();
 
+  // State Variables
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
 
+  // useEffect Hook to Fetch Data from API Services on Page Load
   useEffect(() => {
     taskService
       .getTaskById(taskId)
@@ -27,6 +30,7 @@ function EditTask() {
       .catch((err) => console.error(err));
   }, []);
 
+  // Handle Form and Form Submission
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "title") setTitle(value);
@@ -39,17 +43,18 @@ function EditTask() {
     event.preventDefault();
     taskService
       .updateTask(taskId, { title, date, description, completed })
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        navigate(`/dashboard`);
       })
       .catch((err) => console.error(err));
   };
 
+  // Delete and Edit Task
   const taskDelete = () => {
     taskService
       .deleteTask(taskId)
       .then(() => {
-        console.log(`task ${taskId} deleted`);
+        navigate(`/dashboard`);
       })
       .catch((err) => console.error(err));
   };
@@ -101,7 +106,7 @@ function EditTask() {
           </label>
           <button type="submit">Edit Task</button>
         </form>
-        <button onClick={taskDelete}>Delete Project</button>
+        <button onClick={taskDelete}>Delete Task</button>
         <button onClick={cancelEdit}>Cancel Edit</button>
       </div>
     </div>
