@@ -12,6 +12,7 @@ const taskService = new apiServices.TaskService();
 
 // React Page Component
 function TaskDetails() {
+
   // State Variables
   const [task, setTask] = useState([]);
 
@@ -29,10 +30,10 @@ function TaskDetails() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Format completion status
+  // Format task completion status
   task.completed = task.completed ? "Completed" : "Not Completed";
 
-  // Format date
+  // Format task date
   const date = new Date(task.date);
   task.date = date.toDateString();
 
@@ -46,6 +47,7 @@ function TaskDetails() {
       .catch((err) => console.error(err));
   };
 
+  // Render Page
   return (
     <div>
       <div className="task-details">

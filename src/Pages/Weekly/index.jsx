@@ -3,6 +3,7 @@
 
 // Import Basics
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
@@ -55,14 +56,32 @@ function Weekly() {
     return eventDate >= startWeek && eventDate <= endWeek;
   });
 
-  return(
+  // Sort Events for the Week by Date
+  eventsForWeek.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA - dateB;
+  });
+
+  // Add Day of the Week to event object
+  eventsForWeek.forEach((event) => {
+    const date = new Date(event.date);
+    event.weekDay = date.toDateString().slice(0, 3);
+  });
+
+  // Render Page
+  return (
     <div className="weekly-background">
       <div className="weekly-bullets">
         <div className="weekly-tasks">
           <h2>Tasks for the Week</h2>
           <ul>
             {tasksForWeek.map((task) => {
-              return <li key={task._id}>{task.title}</li>;
+              return (
+                <Link key={task._id} to={`/task/${task._id}`}>
+                  <li>{task.title}</li>
+                </Link>
+              );
             })}
           </ul>
         </div>
@@ -70,13 +89,17 @@ function Weekly() {
           <h2>Events for the Week</h2>
           <ul>
             {eventsForWeek.map((event) => {
-              return <li key={event._id}>{event.title}</li>;
+              return (
+                <Link key={event._id} to={`/event/${event._id}`}>
+                  <li key={event._id}>{event.weekDay}: {event.title}</li>
+                </Link>
+              );
             })}
           </ul>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Weekly;

@@ -29,9 +29,18 @@ function EventDetails() {
       .catch((err) => console.error(err));
   }, []);
 
-  // Format date
+  // Format event completion status
+  event.completed = event.completed ? "Completed" : "Not Completed";
+
+  // Format event date
   const date = new Date(event.date);
   event.date = date.toDateString();
+
+  // Format event time
+  const time = new Date(event.date);
+  const hours = time.getHours();
+  const minutes = time.getMinutes();
+  event.time = `${hours}:${minutes}`;
 
   // Delete Event
   const eventDelete = () => {
@@ -43,13 +52,16 @@ function EventDetails() {
       .catch((err) => console.error(err));
   };
 
+  // Render Page
   return (
     <div>
       <div className="event-details">
         <h2>Event Details</h2>
         <h3>{event.title}</h3>
         <p>{event.description}</p>
+        <p>{event.completed}</p>
         <p>{event.date}</p>
+        <p>{event.time}</p>
       </div>
       <div className="event-details-buttons">
         <Link to={`/edit/event/${event._id}`}>Edit Event</Link>

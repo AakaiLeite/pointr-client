@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
@@ -7,13 +8,17 @@ const eventService = new apiServices.EventService();
 function AddEvent() {
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
     const [description, setDescription] = useState("");
     const [completed, setCompleted] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const {name, value} = event.target;
         if (name === "title") setTitle(value);
         if (name === "date") setDate(value);
+        if (name === "time") setTime(value);
         if (name === "description") setDescription(value);
         if (name === "completed") setCompleted(value);
     };
@@ -21,17 +26,19 @@ function AddEvent() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const combinedDate = `${date}T${time}:00`
+
         const newEvent = {
             title,
-            date,
+            date: combinedDate,
             description,
             completed,
         };
 
         eventService
             .createEvent(newEvent)
-            .then((response) => {
-                console.log(response.data);
+            .then(() => {
+                navigate("/dashboard");
             })
             .catch((err) => console.error(err));
     };
@@ -56,6 +63,17 @@ function AddEvent() {
                             type="text"
                             name="date"
                             value={date}
+                            placeholder="YYYY-MM-DD"
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Time
+                        <input
+                            type="text"
+                            name="time"
+                            value={time}
+                            placeholder="HH:MM"
                             onChange={handleChange}
                         />
                     </label>

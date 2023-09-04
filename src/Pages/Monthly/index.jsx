@@ -55,6 +55,20 @@ function Monthly() {
     );
   });
 
+  // Sort Events for the Month by Date
+  eventsForMonth.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA - dateB;
+  });
+
+  // Add Day of Month to event object
+  eventsForMonth.forEach((event) => {
+    const date = new Date(event.date);
+    event.monthDay = date.getDate();
+  });
+
+  // Render Page
   return (
     <div className="monthly-background">
       <div className="monthly-bullets">
@@ -74,7 +88,11 @@ function Monthly() {
           <h2>Events for the Month</h2>
           <ul>
             {eventsForMonth.map((event) => {
-              return <li key={event._id}>{event.title}</li>;
+              return (
+                <Link key={event._id} to={`/event/${event._id}`}>
+                  <li key={event._id}>Day {event.monthDay}: {event.title}</li>
+                </Link>
+              );
             })}
           </ul>
         </div>
