@@ -42,7 +42,7 @@ function TaskDetails() {
     taskService
       .deleteTask(taskId)
       .then(() => {
-        navigate("/dashboard");
+        navigate("/monthly");
       })
       .catch((err) => console.error(err));
   };
@@ -50,19 +50,21 @@ function TaskDetails() {
   // Render Page
   return (
     <div>
-      <div className="task-details">
+    <div className="details-background">
+      <div className="details-container">
         <h2>Task Details</h2>
         <h3>{task.title}</h3>
         <p>{task.description}</p>
         <p>{task.date}</p>
         <p>{task.completed}</p>
       </div>
-      <div className="task-details-buttons">
+      <div className="details-main-buttons">
         <Link to={`/edit/task/${task._id}`}>Edit Task</Link>
         <button onClick={taskDelete}>Delete Task</button>
       </div>
-      <div className="task-return-buttons">
-        <Link to={`/dashboard`}>Back to Dashboard</Link>
+      <div className="details-return-buttons">
+        <Link to={`/monthly`}>Back to Monthly</Link>
+      </div>
       </div>
     </div>
   );

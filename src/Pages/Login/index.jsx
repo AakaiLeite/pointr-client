@@ -36,7 +36,7 @@ function Login() {
       .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/dashboard");
+        navigate("/monthly");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

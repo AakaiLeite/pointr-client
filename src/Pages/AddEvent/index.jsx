@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
@@ -38,15 +38,15 @@ function AddEvent() {
         eventService
             .createEvent(newEvent)
             .then(() => {
-                navigate("/dashboard");
+                navigate("/monthly");
             })
             .catch((err) => console.error(err));
     };
 
     return (
-        <div className="add-event-background">
+        <div className="agenda-background">
+            <div className="agenda-container">
             <h3>Add an Event</h3>
-            <div className="add-event-form">
                 <form onSubmit={handleSubmit}>
                     <label>
                         Title
@@ -97,6 +97,7 @@ function AddEvent() {
                     </label>
                     <button type="submit">Add Event</button>
                 </form>
+                <Link to="/monthly">Return to Monthly</Link>
             </div>
         </div>
     );

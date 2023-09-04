@@ -14,7 +14,7 @@ function Home() {
       </div>
       <br />
       <div className="cta-button">
-        {user && <Link to="/dashboard">Your Dashboard</Link>}
+        {user && <Link to="/monthly">Get Started</Link>}
         {!user && <Link to="/login">Get Started</Link>}
       </div>
     </div>

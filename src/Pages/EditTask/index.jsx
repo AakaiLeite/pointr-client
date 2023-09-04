@@ -44,7 +44,7 @@ function EditTask() {
     taskService
       .updateTask(taskId, { title, date, description, completed })
       .then(() => {
-        navigate(`/dashboard`);
+        navigate(`/motnhly`);
       })
       .catch((err) => console.error(err));
   };
@@ -54,13 +54,13 @@ function EditTask() {
     taskService
       .deleteTask(taskId)
       .then(() => {
-        navigate(`/dashboard`);
+        navigate(`/monthly`);
       })
       .catch((err) => console.error(err));
   };
 
   const cancelEdit = () => {
-    navigate(`/dashboard`);
+    navigate(`/monthly`);
   };
 
   return (

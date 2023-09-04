@@ -70,32 +70,34 @@ function Monthly() {
 
   // Render Page
   return (
-    <div className="monthly-background">
-      <div className="monthly-bullets">
-        <div className="monthly-tasks">
-          <h2>Tasks for the Month</h2>
-          <ul>
-            {tasksForMonth.map((task) => {
-              return (
-                <Link key={task._id} to={`/task/${task._id}`}>
-                  <li>{task.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="monthly-events">
-          <h2>Events for the Month</h2>
-          <ul>
-            {eventsForMonth.map((event) => {
-              return (
-                <Link key={event._id} to={`/event/${event._id}`}>
-                  <li key={event._id}>Day {event.monthDay}: {event.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-        </div>
+    <div className="intervals-background">
+      <div className="intervals-container">
+        <h2>Tasks for the Month</h2>
+        <ul>
+          {tasksForMonth.map((task) => {
+            return (
+              <Link key={task._id} to={`/task/${task._id}`}>
+                <li>{task.title}</li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/task">Add Task</Link>
+      </div>
+      <div className="intervals-container">
+        <h2>Events for the Month</h2>
+        <ul>
+          {eventsForMonth.map((event) => {
+            return (
+              <Link key={event._id} to={`/event/${event._id}`}>
+                <li key={event._id}>
+                  Day {event.monthDay}: {event.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/event">Add Event</Link>
       </div>
     </div>
   );

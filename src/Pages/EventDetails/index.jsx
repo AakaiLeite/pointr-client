@@ -47,7 +47,7 @@ function EventDetails() {
     eventService
       .deleteEvent(eventId)
       .then(() => {
-        navigate("/dashboard");
+        navigate("/monthly");
       })
       .catch((err) => console.error(err));
   };
@@ -55,7 +55,8 @@ function EventDetails() {
   // Render Page
   return (
     <div>
-      <div className="event-details">
+    <div className="details-background">
+      <div className="details-container">
         <h2>Event Details</h2>
         <h3>{event.title}</h3>
         <p>{event.description}</p>
@@ -63,12 +64,13 @@ function EventDetails() {
         <p>{event.date}</p>
         <p>{event.time}</p>
       </div>
-      <div className="event-details-buttons">
+      <div className="details-main-buttons">
         <Link to={`/edit/event/${event._id}`}>Edit Event</Link>
         <button onClick={eventDelete}>Delete Event</button>
       </div>
-      <div className="event-return-buttons">
-        <Link to="/dashboard">Return to Dashboard</Link>
+      <div className="details-return-buttons">
+        <Link to="/monthly">Return to Monthly</Link>
+      </div>
       </div>
     </div>
   );

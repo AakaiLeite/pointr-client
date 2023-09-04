@@ -71,9 +71,8 @@ function Weekly() {
 
   // Render Page
   return (
-    <div className="weekly-background">
-      <div className="weekly-bullets">
-        <div className="weekly-tasks">
+    <div className="intervals-background">
+        <div className="intervals-container">
           <h2>Tasks for the Week</h2>
           <ul>
             {tasksForWeek.map((task) => {
@@ -84,8 +83,9 @@ function Weekly() {
               );
             })}
           </ul>
+          <Link to="/add/task">Add Task</Link>
         </div>
-        <div className="weekly-events">
+        <div className="weekly-container">
           <h2>Events for the Week</h2>
           <ul>
             {eventsForWeek.map((event) => {
@@ -96,8 +96,8 @@ function Weekly() {
               );
             })}
           </ul>
+          <Link to="/add/event">Add Event</Link>
         </div>
-      </div>
     </div>
   );
 }

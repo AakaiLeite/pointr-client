@@ -62,9 +62,23 @@ function Daily() {
 
   // Render Page
   return (
-    <div className="daily-backgrond">
-      <div className="daily-bullets">
-        <div className="daily-tasks">
+    <div className="intervals-background">
+    <div className="intervals-container">
+          <h2>Events for Today</h2>
+          <ul>
+            {eventsForToday.map((event) => {
+              return (
+                <Link key={event._id} to={`/event/${event._id}`}>
+                  <li key={event._id}>
+                    {event.time}: {event.title}
+                  </li>
+                </Link>
+              );
+            })}
+          </ul>
+          <Link to="/add/event">Add an Event</Link>
+        </div>
+        <div className="intervals-container">
           <h2>Tasks for Today</h2>
           <ul>
             {tasksForToday.map((task) => {
@@ -75,23 +89,12 @@ function Daily() {
                     {task.title}
                   </li>
                 </Link>
-              );  
-            })}
-          </ul>
-        </div>
-        <div className="daily-events">
-          <h2>Events for Today</h2>
-          <ul>
-            {eventsForToday.map((event) => {
-              return (
-                <Link key={event._id} to={`/event/${event._id}`}>
-                  <li key={event._id}>{event.time}: {event.title}</li>
-                </Link>
               );
             })}
           </ul>
+          <Link to="/add/task">Add a Task</Link>
         </div>
-      </div>
+        
     </div>
   );
 }
