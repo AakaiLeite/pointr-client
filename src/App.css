@@ -135,6 +135,18 @@
   font-family: Balqis, cursive, sans-serif;
 }
 
+.auth-container Button {
+  border-style: solid 1px rgb(245, 245, 245);
+  border-radius: 10px;
+  border-width: 1px;
+  margin: 5px;
+  padding: 10px;
+  width: 100px;
+  font-family: "Hind Guntur", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .auth-form {
   display: flex;
   justify-content: center;
@@ -151,7 +163,7 @@
   gap: 15px;
 }
 
-.signup-button {
+.signup-link {
   color: black;
 }
 
@@ -290,6 +302,7 @@
 .agenda-container form button {
   border-radius: 5px;
   border-style: solid 1px rgb(245, 245, 245);
+  border-width: 1px;
   padding: 6px;
   font-size: 14px;
   font-family: "Hind Guntur", sans-serif;
@@ -355,6 +368,7 @@
 .details-main-buttons Button {
   border-radius: 10px;
   border-style: solid 1px rgb(245, 245, 245);
+  border-width: 1px;
   margin: 6px;
   padding: 6px;
   font-family: "Hind Guntur", sans-serif;
@@ -365,6 +379,7 @@
 .main-link-button {
   border-radius: 10px;
   border-style: solid 1px rgb(245, 245, 245);
+  border-width: 1px;
   margin: 5px;
   padding: 10px;
   text-decoration: none;

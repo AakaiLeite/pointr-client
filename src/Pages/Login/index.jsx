@@ -74,7 +74,7 @@ function Login() {
         </button>
         {errorMessage && <p>{errorMessage}</p>}
         <p>Do not have an account yet?</p>
-        <Link className="signup-button" to="/signup">
+        <Link className="signup-link" to="/signup">
           Sign Up
         </Link>
       </div>

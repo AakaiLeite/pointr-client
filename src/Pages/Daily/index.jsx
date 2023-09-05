@@ -17,8 +17,9 @@ function Daily() {
   const [tasks, setTasks] = useState([]);
   const [events, setEvents] = useState([]);
 
-  // useEffect Hook to Fetch Data from API Services on Page Load
+  // useEffect Hook
   useEffect(() => {
+    // Fetch Tasks and Events from API Services
     taskService
       .getAllTasks()
       .then((response) => {
@@ -32,6 +33,21 @@ function Daily() {
         setEvents(response.data);
       })
       .catch((err) => console.error(err));
+
+    // Auto mark Events that are in the past as completed and update in database
+    eventsForToday.forEach((event) => {
+      const eventDate = new Date(event.date);
+      const today = new Date();
+      if (eventDate < today) {
+        event.completed = true;
+        event.title = `${event.title} (Missed)`;
+      }
+
+      eventService
+        .updateEvent(event._id, event)
+        .then(() => {})
+        .catch((err) => console.error(err));
+    });
   }, []);
 
   // Filter Tasks, Notes, and Events for Today
@@ -54,15 +70,6 @@ function Daily() {
     return dateA - dateB;
   });
 
-  // Auto mark Events that are in the past as completed
-  eventsForToday.forEach((event) => {
-    const eventDate = new Date(event.date);
-    const today = new Date();
-    if (eventDate < today) {
-      event.completed = true;
-    }
-  });
-
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);
@@ -76,7 +83,9 @@ function Daily() {
         <h2>Events for Today</h2>
         <ul>
           {eventsForToday.map((event) => {
-            const bulletCompleted = event.completed ? "bullet-completed" : "bullet-incomplete";
+            const bulletCompleted = event.completed
+              ? "bullet-completed"
+              : "bullet-incomplete";
             return (
               <Link key={event._id} to={`/event/${event._id}`}>
                 <li key={event._id} className={bulletCompleted}>
@@ -92,7 +101,9 @@ function Daily() {
         <h2>Tasks for Today</h2>
         <ul>
           {tasksForToday.map((task) => {
-            const bulletCompleted = task.completed ? "bullet-completed" : "bullet-incomplete";
+            const bulletCompleted = task.completed
+              ? "bullet-completed"
+              : "bullet-incomplete";
             return (
               <Link key={task._id} to={`/task/${task._id}`}>
                 <li key={task._id} className={bulletCompleted}>

@@ -17,8 +17,9 @@ function Monthly() {
   const [tasks, setTasks] = useState([]);
   const [events, setEvents] = useState([]);
 
-  // useEffect Hook to Fetch Data from API Services on Page Load
+  // useEffect Hook
   useEffect(() => {
+    // Fetch Tasks and Events from API Services
     taskService
       .getAllTasks()
       .then((response) => {
@@ -32,6 +33,21 @@ function Monthly() {
         setEvents(response.data);
       })
       .catch((err) => console.error(err));
+
+    // Auto mark Events that are in the past as completed and update in database
+    eventsForMonth.forEach((event) => {
+      const eventDate = new Date(event.date);
+      const today = new Date();
+      if (eventDate < today) {
+        event.completed = true;
+      }
+      eventService
+        .updateEvent(event._id, event)
+        .then(() => {
+          console.log("Event auto marked as completed due to date/time");
+        })
+        .catch((err) => console.error(err));
+    });
   }, []);
 
   // Filter Tasks, Notes, and Events for the current Month

@@ -2,6 +2,10 @@
 import {Routes, Route} from "react-router-dom";
 import "./App.css";
 
+// Import Auth Middleware
+import IsUser from "./Components/isUser";
+import IsGuest from "./Components/isGuest";
+
 // Import Pages
 import Home from "./Pages/Home";
 import Error from "./Pages/Error";
@@ -27,17 +31,17 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/daily" element={<Daily />} />
-        <Route path="/monthly" element={<Monthly />} />
-        <Route path="/weekly" element={<Weekly />} />
-        <Route path="/task/:taskId" element={<TaskDetails />} />
-        <Route path="/event/:eventId" element={<EventDetails />} />
-        <Route path="/add/task" element={<AddTask />} />
-        <Route path="/add/event" element={<AddEvent />} />
-        <Route path="/edit/task/:taskId" element={<EditTask />} />
-        <Route path="/edit/event/:eventId" element={<EditEvent />} />
+        <Route path="/login" element={<IsGuest><Login /></IsGuest>} />
+        <Route path="/signup" element={<IsGuest><Signup /></IsGuest>} />
+        <Route path="/daily" element={<IsUser><Daily /></IsUser>} />
+        <Route path="/monthly" element={<IsUser><Monthly /></IsUser>} />
+        <Route path="/weekly" element={<IsUser><Weekly /></IsUser>} />
+        <Route path="/task/:taskId" element={<IsUser><TaskDetails /></IsUser>} />
+        <Route path="/event/:eventId" element={<IsUser><EventDetails /></IsUser>} />
+        <Route path="/add/task" element={<IsUser><AddTask /></IsUser>} />
+        <Route path="/add/event" element={<IsUser><AddEvent /></IsUser>} />
+        <Route path="/edit/task/:taskId" element={<IsUser><EditTask /></IsUser>} />
+        <Route path="/edit/event/:eventId" element={<IsUser><EditEvent /></IsUser>} />
         <Route path="/*" element={<Error />} />
       </Routes>
     </div>
