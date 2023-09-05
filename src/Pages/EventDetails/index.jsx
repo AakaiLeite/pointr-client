@@ -14,6 +14,7 @@ const eventService = new apiServices.EventService();
 function EventDetails() {
   // State Variables
   const [event, setEvent] = useState([]);
+  const [completed, setCompleted] = useState(false);
 
   // React Router useParams and Navigate Hooks
   const { eventId } = useParams();
@@ -25,12 +26,11 @@ function EventDetails() {
       .getEventById(eventId)
       .then((response) => {
         setEvent(response.data);
+        if (response.data.completed) setCompleted(true);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  // Format event completion status
-  event.completed = event.completed ? "Completed" : "Not Completed";
 
   // Format event date
   const date = new Date(event.date);
@@ -60,14 +60,11 @@ function EventDetails() {
           <h2>Event Details</h2>
           <h3>{event.title}</h3>
           <p>{event.description}</p>
-          <p>{event.completed}</p>
+          {completed ? <p>Completed</p> : <p>Not Completed</p>}
           <p>{event.date}</p>
           <p>{event.time}</p>
           <div className="details-main-buttons">
-            <Link
-              className="main-link-button"
-              to={`/edit/event/${event._id}`}
-            >
+            <Link className="main-link-button" to={`/edit/event/${event._id}`}>
               Edit Event
             </Link>
             <button onClick={eventDelete}>Delete Event</button>

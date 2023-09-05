@@ -18,7 +18,7 @@ function AddTask() {
     if (name === "title") setTitle(value);
     if (name === "date") setDate(value);
     if (name === "description") setDescription(value);
-    if (name === "completed") setCompleted(value);
+    if (name === "completed") setCompleted(event.target.checked);
   };
 
   const handleSubmit = (event) => {
@@ -80,7 +80,7 @@ function AddTask() {
               type="checkbox"
               name="completed"
               value={completed}
-              onChange={(e) => setCompleted(e.target.value)}
+              onChange={handleChange}
             />
           </label>
           <button type="submit">Add Task</button>
