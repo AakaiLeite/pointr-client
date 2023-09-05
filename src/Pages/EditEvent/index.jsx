@@ -22,11 +22,10 @@ function EditEvent() {
     eventService
       .getEventById(eventId)
       .then((response) => {
-        const { title, date, /* time */ description, completed } =
+        const { title, date, description, completed } =
           response.data;
         setTitle(title);
         setDate(date);
-        setTime(time);
         setDescription(description);
         setCompleted(completed);
       })
@@ -45,8 +44,9 @@ function EditEvent() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    //add code to concatenate date and time to date
     eventService
-      .updateEvent(eventId, { title, date, /* time, */ description, completed })
+      .updateEvent(eventId, { title, date, description, completed })
       .then(() => {
         navigate(`/monthly`);
       })

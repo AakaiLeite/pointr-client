@@ -103,6 +103,7 @@ function EditTask() {
               type="checkbox"
               name="completed"
               value={completed}
+              checked={completed}
               onChange={handleChange}
             />
           </label>
