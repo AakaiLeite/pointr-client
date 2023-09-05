@@ -18,9 +18,15 @@
   color: black;
 }
 
-.navbar-img img {
+.pointr-logo {
   width: 45px;
   height: 45px;
+}
+
+.pointr-logo:hover {
+  cursor: default;
+  transform: rotate(360deg);
+  transition: all 0.3s ease-in-out 0s;
 }
 
 .navbar-main {
