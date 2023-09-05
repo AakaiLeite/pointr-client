@@ -22,7 +22,8 @@ function EditEvent() {
     eventService
       .getEventById(eventId)
       .then((response) => {
-        const { title, date, time, description, completed } = response.data;
+        const { title, date, /* time */ description, completed } =
+          response.data;
         setTitle(title);
         setDate(date);
         setTime(time);
@@ -45,7 +46,7 @@ function EditEvent() {
   const handleSubmit = (event) => {
     event.preventDefault();
     eventService
-      .updateEvent(eventId, { title, date, time, description, completed })
+      .updateEvent(eventId, { title, date, /* time, */ description, completed })
       .then(() => {
         navigate(`/monthly`);
       })
@@ -116,6 +117,7 @@ function EditEvent() {
               type="checkbox"
               name="completed"
               value={completed}
+              checked={completed}
               onChange={handleChange}
             />
           </label>

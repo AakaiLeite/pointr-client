@@ -248,10 +248,10 @@
 .details-main-buttons Button {
   border-radius: 10px;
   border-style: solid 1px rgb(245, 245, 245);
-  margin: 5px;
-  padding: 10px;
+  margin: 6px;
+  padding: 6px;
   font-family: "Hind Guntur", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: normal;
 }
 
