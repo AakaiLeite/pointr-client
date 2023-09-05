@@ -24,7 +24,6 @@ function Login() {
   // Destructuring the AuthContext object
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-
   // Handle Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,32 +46,37 @@ function Login() {
   // Render Page
   return (
     <div className="login-background">
-    <div className="login-container">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
-      {errorMessage && <p>{errorMessage}</p>}
-      <p>Do not have an account yet?</p>
-      <Link className="signup-button" to="/signup">Sign Up</Link>
+      <div className="auth-container">
+        <h1>Login</h1>
+        <form className="auth-form" onSubmit={handleSubmit} id="loginForm">
+          <div className="auth-form-content">
+            <label>Email:</label>
+            <label>Password:</label>
+          </div>
+          <div className="auth-form-content">
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </form>
+        <button type="submit" form="loginForm">
+          Log In
+        </button>
+        {errorMessage && <p>{errorMessage}</p>}
+        <p>Do not have an account yet?</p>
+        <Link className="signup-button" to="/signup">
+          Sign Up
+        </Link>
       </div>
     </div>
   );

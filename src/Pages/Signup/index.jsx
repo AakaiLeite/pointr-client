@@ -39,38 +39,42 @@ function Signup() {
   // Render Page
   return (
     <div className="signup-background">
-      <div className="signup-container">
+      <div className="auth-container">
       <h1>Signup and be Awesome</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form className="auth-form" onSubmit={handleSubmit} id="signupForm">
+      <div className="auth-form-content">
+      <label>
           Name:
+               </label>
+        <label>
+          Email:
+             </label>
+        <label>
+          Password:
+            </label>
+      </div>
+      <div className="auth-form-content">
           <input
             type="text"
             name="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-        </label>
-        <label>
-          Email:
           <input
             type="email"
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </label>
-        <label>
-          Password:
           <input
             type="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <button type="submit">Sign Up</button>
+          </div>
       </form>
+        <button type="submit" form="signupForm">Sign Up</button>
       </div>
       {error && <p>{error}</p>}
     </div>
