@@ -57,13 +57,13 @@ function TaskDetails() {
           <p>{task.description}</p>
           <p>{task.date}</p>
           <p>{task.completed}</p>
-        </div>
         <div className="details-main-buttons">
-          <Link to={`/edit/task/${task._id}`}>Edit Task</Link>
+          <Link className="main-link-button" to={`/edit/task/${task._id}`}>Edit Task</Link>
           <button onClick={taskDelete}>Delete Task</button>
         </div>
+        </div>
         <div className="details-return-buttons">
-          <Link to={`/monthly`}>Back to Monthly</Link>
+          <Link className="return-link-button" to={`/monthly`}>Back to Monthly</Link>
         </div>
       </div>
     </div>

@@ -68,8 +68,8 @@ function EditEvent() {
 
   return (
     <div className="agenda-background">
-      <h3>Edit Event</h3>
       <div className="agenda-container">
+        <h2>Edit Event</h2>
         <form onSubmit={handleSubmit}>
           <label>
             Title
@@ -77,6 +77,7 @@ function EditEvent() {
               type="text"
               name="title"
               value={title}
+              placeholder="Event Title"
               onChange={handleChange}
             />
           </label>
@@ -104,6 +105,7 @@ function EditEvent() {
             <input
               type="text"
               name="description"
+              placeholder="Event Description"
               value={description}
               onChange={handleChange}
             />
@@ -119,8 +121,10 @@ function EditEvent() {
           </label>
           <button type="submit">Edit Event</button>
         </form>
-        <button onClick={eventDelete}>Delete Event</button>
-        <button onClick={cancelEdit}>Cancel Edit</button>
+        <div className="agenda-secondary-buttons">
+          <button onClick={eventDelete}>Delete Event</button>
+          <button onClick={cancelEdit}>Cancel Edit</button>
+        </div>
       </div>
     </div>
   );

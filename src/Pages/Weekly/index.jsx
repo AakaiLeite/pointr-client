@@ -72,7 +72,7 @@ function Weekly() {
   // Render Page
   return (
     <div className="intervals-background">
-      <div className="weekly-container">
+      <div className="intervals-container">
         <h2>Events for the Week</h2>
         <ul>
           {eventsForWeek.map((event) => {

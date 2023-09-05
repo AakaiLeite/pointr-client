@@ -49,6 +49,7 @@ function AddTask() {
             <input
               type="text"
               name="title"
+              placeholder="Task title"
               value={title}
               onChange={handleChange}
             />
@@ -68,6 +69,7 @@ function AddTask() {
             <input
               type="text"
               name="description"
+              placeholder="Task description"
               value={description}
               onChange={handleChange}
             />

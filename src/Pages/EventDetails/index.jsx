@@ -55,22 +55,29 @@ function EventDetails() {
   // Render Page
   return (
     <div>
-    <div className="details-background">
-      <div className="details-container">
-        <h2>Event Details</h2>
-        <h3>{event.title}</h3>
-        <p>{event.description}</p>
-        <p>{event.completed}</p>
-        <p>{event.date}</p>
-        <p>{event.time}</p>
-      </div>
-      <div className="details-main-buttons">
-        <Link to={`/edit/event/${event._id}`}>Edit Event</Link>
-        <button onClick={eventDelete}>Delete Event</button>
-      </div>
-      <div className="details-return-buttons">
-        <Link to="/monthly">Return to Monthly</Link>
-      </div>
+      <div className="details-background">
+        <div className="details-container">
+          <h2>Event Details</h2>
+          <h3>{event.title}</h3>
+          <p>{event.description}</p>
+          <p>{event.completed}</p>
+          <p>{event.date}</p>
+          <p>{event.time}</p>
+          <div className="details-main-buttons">
+            <Link
+              className="main-link-button"
+              to={`/edit/event/${event._id}`}
+            >
+              Edit Event
+            </Link>
+            <button onClick={eventDelete}>Delete Event</button>
+          </div>
+        </div>
+        <div className="details-return-buttons">
+          <Link className="return-link-button" to="/monthly">
+            Return to Monthly
+          </Link>
+        </div>
       </div>
     </div>
   );
