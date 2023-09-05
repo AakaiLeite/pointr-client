@@ -1,7 +1,7 @@
 // Clear ESlint errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const eventService = new apiServices.EventService();
 // React Page Component
 function EventDetails() {
   // State Variables
-  const [event, setEvent] = useState([]);
+  const [event, setEvent] = useState({});
 
   // React Router useParams and Navigate Hooks
   const { eventId } = useParams();
@@ -28,20 +28,21 @@ function EventDetails() {
         let eventCompleted = response.data.completed
           ? "Completed"
           : "Not Completed";
-        setEvent({ ...response.data, completed: eventCompleted });
+        // Get event date and get time from the date
+        let eventDate = response.data.date;
+        let eventTime = eventDate.slice(11, 16);
+        setEvent({
+          ...response.data,
+          completed: eventCompleted,
+          date: eventDate,
+          time: eventTime,
+        });
       })
       .catch((err) => console.error(err));
   }, []);
 
-  // Format event date
-  const date = new Date(event.date);
-  event.date = date.toDateString();
-
-  // Format event time
-  const time = new Date(event.date);
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
-  event.time = `${hours}:${minutes}`;
+  // Format event date for display
+  event.date = event.date ? event.date.slice(0, 10) : "";
 
   // Delete Event
   const eventDelete = () => {
@@ -81,4 +82,5 @@ function EventDetails() {
   );
 }
 
+// Export Page
 export default EventDetails;

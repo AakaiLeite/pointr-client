@@ -1,16 +1,22 @@
+// Import Dependencies
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/auth.context";
 
+// React Component
 function Navbar() {
+  // Destructure AuthContext
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
 
+  // Render Page
   return (
     <nav className="navbar">
+    <Link to={`/`} className="navbar-img">
       <div className="navbar-img">
         <img src="/public/images/pointr-logo.png" alt="Pointr Logo" />
         <h5>Pointr</h5>
       </div>
+      </Link>
       <div className="navbar-main">
         <p>
           <Link to="/">Home</Link>
@@ -59,4 +65,5 @@ function Navbar() {
   );
 }
 
+// Export Component
 export default Navbar;

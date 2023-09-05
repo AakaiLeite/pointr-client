@@ -1,7 +1,7 @@
 // Clear ESlint errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -108,4 +108,5 @@ function Weekly() {
   );
 }
 
+// Export Page
 export default Weekly;

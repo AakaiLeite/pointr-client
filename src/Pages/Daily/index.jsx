@@ -1,7 +1,7 @@
 // Clear ESlink errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -54,6 +54,15 @@ function Daily() {
     return dateA - dateB;
   });
 
+  // Auto mark Events that are in the past as completed
+  eventsForToday.forEach((event) => {
+    const eventDate = new Date(event.date);
+    const today = new Date();
+    if (eventDate < today) {
+      event.completed = true;
+    }
+  });
+
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);
@@ -67,10 +76,10 @@ function Daily() {
         <h2>Events for Today</h2>
         <ul>
           {eventsForToday.map((event) => {
-            const checkCompleted = event.completed ? "bullet-completed" : "";
+            const bulletCompleted = event.completed ? "bullet-completed" : "bullet-incomplete";
             return (
               <Link key={event._id} to={`/event/${event._id}`}>
-                <li key={event._id} className={checkCompleted}>
+                <li key={event._id} className={bulletCompleted}>
                   {event.time}: {event.title}
                 </li>
               </Link>
@@ -83,10 +92,10 @@ function Daily() {
         <h2>Tasks for Today</h2>
         <ul>
           {tasksForToday.map((task) => {
-            const checkCompleted = task.completed ? "bullet-completed" : "";
+            const bulletCompleted = task.completed ? "bullet-completed" : "bullet-incomplete";
             return (
               <Link key={task._id} to={`/task/${task._id}`}>
-                <li key={task._id} className={checkCompleted}>
+                <li key={task._id} className={bulletCompleted}>
                   {task.title}
                 </li>
               </Link>
@@ -99,4 +108,5 @@ function Daily() {
   );
 }
 
+// Export Page
 export default Daily;

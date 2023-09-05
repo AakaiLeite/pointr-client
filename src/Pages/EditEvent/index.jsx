@@ -1,4 +1,4 @@
-// Import Basics
+// Import Dependencies
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -22,10 +22,14 @@ function EditEvent() {
     eventService
       .getEventById(eventId)
       .then((response) => {
-        const { title, date, description, completed } =
-          response.data;
+        const { title, date, description, completed } = response.data;
         setTitle(title);
-        setDate(date);
+        // Format date
+        const eventDate = date.slice(0, 10);
+        setDate(eventDate);
+        // Format time
+        const eventTime = date.slice(11, 16);
+        setTime(eventTime);
         setDescription(description);
         setCompleted(completed);
       })
@@ -44,9 +48,15 @@ function EditEvent() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //add code to concatenate date and time to date
+    //Concatenate Date and Time to Date
+    const combinedDate = `${date}T${time}:00`;
     eventService
-      .updateEvent(eventId, { title, date, description, completed })
+      .updateEvent(eventId, {
+        title,
+        date: combinedDate,
+        description,
+        completed,
+      })
       .then(() => {
         navigate(`/monthly`);
       })
@@ -67,6 +77,7 @@ function EditEvent() {
     navigate(`/monthly`);
   };
 
+  // Render Page
   return (
     <div className="agenda-background">
       <div className="agenda-container">
@@ -87,6 +98,7 @@ function EditEvent() {
             <input
               type="text"
               name="date"
+              value={date}
               placeholder="YYYY-MM-DD"
               onChange={handleChange}
             />
@@ -132,6 +144,5 @@ function EditEvent() {
   );
 }
 
+// Export Page
 export default EditEvent;
-
-//Keep me here for now

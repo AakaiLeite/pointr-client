@@ -1,7 +1,7 @@
 // Clear ESlint errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import { useContext, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -44,8 +44,10 @@ function Login() {
       });
   };
 
+  // Render Page
   return (
-    <div>
+    <div className="login-background">
+    <div className="login-container">
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -69,10 +71,12 @@ function Login() {
         <button type="submit">Log In</button>
       </form>
       {errorMessage && <p>{errorMessage}</p>}
-      <p>Don't have an account yet?</p>
-      <Link to="/signup">Sign Up</Link>
+      <p>Do not have an account yet?</p>
+      <Link className="signup-button" to="/signup">Sign Up</Link>
+      </div>
     </div>
   );
 }
 
+// Export Page
 export default Login;

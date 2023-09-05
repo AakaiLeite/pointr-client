@@ -1,7 +1,7 @@
 // Clear ESlink errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const taskService = new apiServices.TaskService();
 // React Page Component
 function TaskDetails() {
   // State Variables
-  const [task, setTask] = useState([]);
+  const [task, setTask] = useState({});
 
   // React Router useParams and Navigate Hooks
   const { taskId } = useParams();
@@ -70,4 +70,5 @@ function TaskDetails() {
   );
 }
 
+// Export Page
 export default TaskDetails;

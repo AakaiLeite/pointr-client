@@ -1,7 +1,7 @@
 // Clear ESlint errors
 /* eslint-disable no-unused-vars */
 
-// Import Basics
+// Import Dependencies
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -36,6 +36,7 @@ function Signup() {
       });
   };
 
+  // Render Page
   return (
     <div>
       <h1>Signup and be Awesome</h1>
@@ -74,4 +75,5 @@ function Signup() {
   );
 }
 
+// Export Component
 export default Signup;

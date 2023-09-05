@@ -1,3 +1,4 @@
+// Import Dependencies
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -5,14 +6,18 @@ import { Link, useNavigate } from "react-router-dom";
 import apiServices from "../../services/api.services.js";
 const taskService = new apiServices.TaskService();
 
+// React Page Component
 function AddTask() {
+  // State Variables
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
 
+  // React Router Navigate Hook
   const navigate = useNavigate();
 
+  // Handle form changes and submit
   const handleChange = (event) => {
     const { name, value } = event.target;
     if (name === "title") setTitle(value);
@@ -23,14 +28,12 @@ function AddTask() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     const newTask = {
       title,
       date,
       description,
       completed,
     };
-
     taskService
       .createTask(newTask)
       .then(() => {
@@ -39,6 +42,7 @@ function AddTask() {
       .catch((err) => console.error(err));
   };
 
+  // Render Page
   return (
     <div className="agenda-background">
       <div className="agenda-container">
@@ -85,9 +89,11 @@ function AddTask() {
           </label>
           <button type="submit">Add Task</button>
         </form>
-        <Link to="/monthly">Back to Monthly</Link>
+        <Link className="agenda-return-button" to="/monthly">Back to Monthly</Link>
       </div>
     </div>
   );
 }
+
+// Export Page
 export default AddTask;

@@ -1,3 +1,4 @@
+// Import Dependencies
 import {useState} from "react";
 import { Link, useNavigate} from "react-router-dom";
 
@@ -5,15 +6,19 @@ import { Link, useNavigate} from "react-router-dom";
 import apiServices from "../../services/api.services.js";
 const eventService = new apiServices.EventService();
 
+// React Page Component
 function AddEvent() {
+    // State Variables
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
     const [description, setDescription] = useState("");
     const [completed, setCompleted] = useState(false);
 
+    // React Router Navigate Hook
     const navigate = useNavigate();
 
+    // Handle form changes and submit
     const handleChange = (event) => {
         const {name, value} = event.target;
         if (name === "title") setTitle(value);
@@ -25,16 +30,13 @@ function AddEvent() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         const combinedDate = `${date}T${time}:00`
-
         const newEvent = {
             title,
             date: combinedDate,
             description,
             completed,
         };
-
         eventService
             .createEvent(newEvent)
             .then(() => {
@@ -43,6 +45,7 @@ function AddEvent() {
             .catch((err) => console.error(err));
     };
 
+    // Render Page
     return (
         <div className="agenda-background">
             <div className="agenda-container">
@@ -97,11 +100,12 @@ function AddEvent() {
                     </label>
                     <button type="submit">Add Event</button>
                 </form>
-                <Link to="/monthly">Return to Monthly</Link>
+                <Link className="agenda-return-button" to="/monthly">Return to Monthly</Link>
             </div>
         </div>
     );
 
 }
 
+// Export Page
 export default AddEvent;

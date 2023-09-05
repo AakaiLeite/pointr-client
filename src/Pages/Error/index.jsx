@@ -1,3 +1,4 @@
+// React Page Component
 function Error(){
 return (
     <div>
@@ -7,4 +8,5 @@ return (
 )
 }
 
+// Export Page
 export default Error;

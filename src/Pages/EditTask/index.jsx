@@ -1,4 +1,4 @@
-// Import Basics
+// Import Dependencies
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -63,6 +63,7 @@ function EditTask() {
     navigate(`/monthly`);
   };
 
+  // Render Page
   return (
     <div className="agenda-background">
       <div className="agenda-container">
@@ -118,4 +119,5 @@ function EditTask() {
   );
 }
 
+// Export Page
 export default EditTask;
