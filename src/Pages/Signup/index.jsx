@@ -38,7 +38,8 @@ function Signup() {
 
   // Render Page
   return (
-    <div>
+    <div className="signup-background">
+      <div className="signup-container">
       <h1>Signup and be Awesome</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -70,6 +71,7 @@ function Signup() {
         </label>
         <button type="submit">Sign Up</button>
       </form>
+      </div>
       {error && <p>{error}</p>}
     </div>
   );
