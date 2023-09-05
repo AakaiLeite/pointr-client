@@ -23,7 +23,8 @@ function EditTask() {
       .then((response) => {
         const { title, date, description, completed } = response.data;
         setTitle(title);
-        setDate(date);
+        const taskDate = date.slice(0, 10);
+        setDate(taskDate);
         setDescription(description);
         setCompleted(completed);
       })
@@ -84,6 +85,7 @@ function EditTask() {
             <input
               type="text"
               name="date"
+              value={date}
               placeholder="YYYY-MM-DD"
               onChange={handleChange}
             />
