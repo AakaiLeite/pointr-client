@@ -15,18 +15,22 @@ function Navbar() {
         <p>
           <Link to="/">Home</Link>
         </p>
-        <p>|</p>
-        <p>
-          <Link to="/daily">Daily</Link>
-        </p>
-        <p>|</p>
-        <p>
-          <Link to="/weekly">Weekly</Link>
-        </p>
-        <p>|</p>
-        <p>
-          <Link to="/monthly">Monthly</Link>
-        </p>
+        {isLoggedIn && (
+          <div className="navbar-main">
+            <p>|</p>
+            <p>
+              <Link to="/daily">Daily</Link>
+            </p>
+            <p>|</p>
+            <p>
+              <Link to="/weekly">Weekly</Link>
+            </p>
+            <p>|</p>
+            <p>
+              <Link to="/monthly">Monthly</Link>
+            </p>
+          </div>
+        )}
       </div>
       <div className="navbar-auth">
         {!isLoggedIn && (
@@ -34,6 +38,7 @@ function Navbar() {
             <p>
               <Link to="/login">Login</Link>
             </p>
+            <p>|</p>
             <p>
               <Link to="/signup">Signup</Link>
             </p>
