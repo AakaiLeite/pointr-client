@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { Link, useNavigate} from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
@@ -7,13 +8,17 @@ const eventService = new apiServices.EventService();
 function AddEvent() {
     const [title, setTitle] = useState("");
     const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
     const [description, setDescription] = useState("");
     const [completed, setCompleted] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const {name, value} = event.target;
         if (name === "title") setTitle(value);
         if (name === "date") setDate(value);
+        if (name === "time") setTime(value);
         if (name === "description") setDescription(value);
         if (name === "completed") setCompleted(value);
     };
@@ -21,25 +26,27 @@ function AddEvent() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
+        const combinedDate = `${date}T${time}:00`
+
         const newEvent = {
             title,
-            date,
+            date: combinedDate,
             description,
             completed,
         };
 
         eventService
             .createEvent(newEvent)
-            .then((response) => {
-                console.log(response.data);
+            .then(() => {
+                navigate("/monthly");
             })
             .catch((err) => console.error(err));
     };
 
     return (
-        <div className="add-event-background">
+        <div className="agenda-background">
+            <div className="agenda-container">
             <h3>Add an Event</h3>
-            <div className="add-event-form">
                 <form onSubmit={handleSubmit}>
                     <label>
                         Title
@@ -56,6 +63,17 @@ function AddEvent() {
                             type="text"
                             name="date"
                             value={date}
+                            placeholder="YYYY-MM-DD"
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Time
+                        <input
+                            type="text"
+                            name="time"
+                            value={time}
+                            placeholder="HH:MM"
                             onChange={handleChange}
                         />
                     </label>
@@ -79,6 +97,7 @@ function AddEvent() {
                     </label>
                     <button type="submit">Add Event</button>
                 </form>
+                <Link to="/monthly">Return to Monthly</Link>
             </div>
         </div>
     );

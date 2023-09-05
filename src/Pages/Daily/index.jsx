@@ -1,30 +1,28 @@
-import { useState } from "react";
+// Clear ESlink errors
+/* eslint-disable no-unused-vars */
+
+// Import Basics
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
-const { TaskService, NoteService, EventService } = apiServices;
+const { TaskService, EventService } = apiServices;
 const taskService = new apiServices.TaskService();
-const noteService = new apiServices.NoteService();
 const eventService = new apiServices.EventService();
 
+// React Page Component
 function Daily() {
+  // State Variables
   const [tasks, setTasks] = useState([]);
-  const [notes, setNotes] = useState([]);
   const [events, setEvents] = useState([]);
 
-  useState(() => {
+  // useEffect Hook to Fetch Data from API Services on Page Load
+  useEffect(() => {
     taskService
       .getAllTasks()
       .then((response) => {
-        console.log(response.data);
         setTasks(response.data);
-      })
-      .catch((err) => console.error(err));
-
-    noteService
-      .getAllNotes()
-      .then((response) => {
-        setNotes(response.data);
       })
       .catch((err) => console.error(err));
 
@@ -36,33 +34,66 @@ function Daily() {
       .catch((err) => console.error(err));
   }, []);
 
+  // Filter Tasks, Notes, and Events for Today
+  const today = new Date().toISOString().slice(0, 10);
+
+  const tasksForToday = tasks.filter((task) => {
+    const taskDate = new Date(task.date).toISOString().slice(0, 10);
+    return taskDate === today;
+  });
+
+  const eventsForToday = events.filter((event) => {
+    const eventDate = new Date(event.date).toISOString().slice(0, 10);
+    return eventDate === today;
+  });
+
+  // Sort Events for Today by Date
+  eventsForToday.sort((a, b) => {
+    const dateA = new Date(a.date);
+    const dateB = new Date(b.date);
+    return dateA - dateB;
+  });
+
+  // Format Event Time
+  eventsForToday.forEach((event) => {
+    const time = new Date(event.date);
+    event.time = time.toLocaleTimeString();
+  });
+
+  // Render Page
   return (
-    <div className="daily-backgrond">
-      <div className="daily-bullets">
-        <div className="daily-tasks">
-          <h2>Tasks</h2>
-          <ul>
-            {tasks.map((task) => {
-              return <li key={task._id}>{task.title}</li>;
-            })}
-          </ul>
-        </div>
-        <div className="daily-notes">
-          <h2>Notes</h2>
-          <ul>
-            {notes.map((note) => {
-              return <li key={note._id}>{note.title}</li>;
-            })}
-          </ul>
-        </div>
-        <div className="daily-events">
-          <h2>Events</h2>
-          <ul>
-            {events.map((event) => {
-              return <li key={event._id}>{event.title}</li>;
-            })}
-          </ul>
-        </div>
+    <div className="intervals-background">
+      <div className="intervals-container">
+        <h2>Events for Today</h2>
+        <ul>
+          {eventsForToday.map((event) => {
+            const checkCompleted = event.completed ? "bullet-completed" : "";
+            return (
+              <Link key={event._id} to={`/event/${event._id}`}>
+                <li key={event._id} className={checkCompleted}>
+                  {event.time}: {event.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/event">Add an Event</Link>
+      </div>
+      <div className="intervals-container">
+        <h2>Tasks for Today</h2>
+        <ul>
+          {tasksForToday.map((task) => {
+            const checkCompleted = task.completed ? "bullet-completed" : "";
+            return (
+              <Link key={task._id} to={`/task/${task._id}`}>
+                <li key={task._id} className={checkCompleted}>
+                  {task.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/task">Add a Task</Link>
       </div>
     </div>
   );

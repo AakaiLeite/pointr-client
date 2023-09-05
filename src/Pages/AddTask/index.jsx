@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 // API Services
 import apiServices from "../../services/api.services.js";
@@ -9,6 +10,8 @@ function AddTask() {
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,16 +33,16 @@ function AddTask() {
 
     taskService
       .createTask(newTask)
-      .then((response) => {
-        console.log(response.data);
+      .then(() => {
+        navigate("/monthly");
       })
       .catch((err) => console.error(err));
   };
 
   return (
-    <div className="add-task-background">
-    <h3>Add a Task</h3>
-      <div className="add-task-form">
+    <div className="agenda-background">
+      <div className="agenda-container">
+        <h3>Add a Task</h3>
         <form onSubmit={handleSubmit}>
           <label>
             Title
@@ -56,6 +59,7 @@ function AddTask() {
               type="text"
               name="date"
               value={date}
+              placeholder="yyyy-mm-dd"
               onChange={handleChange}
             />
           </label>
@@ -79,6 +83,7 @@ function AddTask() {
           </label>
           <button type="submit">Add Task</button>
         </form>
+        <Link to="/monthly">Back to Monthly</Link>
       </div>
     </div>
   );
