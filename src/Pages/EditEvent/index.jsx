@@ -39,7 +39,7 @@ function EditEvent() {
     if (name === "date") setDate(value);
     if (name === "time") setTime(value);
     if (name === "description") setDescription(value);
-    if (name === "completed") setCompleted(value);
+    if (name === "completed") setCompleted(event.target.checked);
   };
 
   const handleSubmit = (event) => {
@@ -67,9 +67,9 @@ function EditEvent() {
   };
 
   return (
-    <div className="edit-event-background">
+    <div className="agenda-background">
       <h3>Edit Event</h3>
-      <div className="edit-event-container">
+      <div className="agenda-container">
         <form onSubmit={handleSubmit}>
           <label>
             Title
@@ -85,8 +85,7 @@ function EditEvent() {
             <input
               type="text"
               name="date"
-              value={date}
-              placeholder="MM/DD/YYYY"
+              placeholder="YYYY-MM-DD"
               onChange={handleChange}
             />
           </label>

@@ -12,7 +12,6 @@ const taskService = new apiServices.TaskService();
 
 // React Page Component
 function TaskDetails() {
-
   // State Variables
   const [task, setTask] = useState([]);
 
@@ -25,13 +24,14 @@ function TaskDetails() {
     taskService
       .getTaskById(taskId)
       .then((response) => {
-        setTask(response.data);
+        // Format task completion status
+        let taskCompleted = response.data.completed
+          ? "Completed"
+          : "Not Completed";
+        setTask({ ...response.data, completed: taskCompleted });
       })
       .catch((err) => console.error(err));
   }, []);
-
-  // Format task completion status
-  task.completed = task.completed ? "Completed" : "Not Completed";
 
   // Format task date
   const date = new Date(task.date);
@@ -50,21 +50,21 @@ function TaskDetails() {
   // Render Page
   return (
     <div>
-    <div className="details-background">
-      <div className="details-container">
-        <h2>Task Details</h2>
-        <h3>{task.title}</h3>
-        <p>{task.description}</p>
-        <p>{task.date}</p>
-        <p>{task.completed}</p>
-      </div>
-      <div className="details-main-buttons">
-        <Link to={`/edit/task/${task._id}`}>Edit Task</Link>
-        <button onClick={taskDelete}>Delete Task</button>
-      </div>
-      <div className="details-return-buttons">
-        <Link to={`/monthly`}>Back to Monthly</Link>
-      </div>
+      <div className="details-background">
+        <div className="details-container">
+          <h2>Task Details</h2>
+          <h3>{task.title}</h3>
+          <p>{task.description}</p>
+          <p>{task.date}</p>
+          <p>{task.completed}</p>
+        </div>
+        <div className="details-main-buttons">
+          <Link to={`/edit/task/${task._id}`}>Edit Task</Link>
+          <button onClick={taskDelete}>Delete Task</button>
+        </div>
+        <div className="details-return-buttons">
+          <Link to={`/monthly`}>Back to Monthly</Link>
+        </div>
       </div>
     </div>
   );

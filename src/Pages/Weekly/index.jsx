@@ -72,32 +72,38 @@ function Weekly() {
   // Render Page
   return (
     <div className="intervals-background">
-        <div className="intervals-container">
-          <h2>Tasks for the Week</h2>
-          <ul>
-            {tasksForWeek.map((task) => {
-              return (
-                <Link key={task._id} to={`/task/${task._id}`}>
-                  <li>{task.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-          <Link to="/add/task">Add Task</Link>
-        </div>
-        <div className="weekly-container">
-          <h2>Events for the Week</h2>
-          <ul>
-            {eventsForWeek.map((event) => {
-              return (
-                <Link key={event._id} to={`/event/${event._id}`}>
-                  <li key={event._id}>{event.weekDay}: {event.title}</li>
-                </Link>
-              );
-            })}
-          </ul>
-          <Link to="/add/event">Add Event</Link>
-        </div>
+      <div className="weekly-container">
+        <h2>Events for the Week</h2>
+        <ul>
+          {eventsForWeek.map((event) => {
+            const checkCompleted = event.completed ? "bullet-completed" : "";
+            return (
+              <Link key={event._id} to={`/event/${event._id}`}>
+                <li key={event._id} className={checkCompleted}>
+                  {event.weekDay}: {event.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/event">Add Event</Link>
+      </div>
+      <div className="intervals-container">
+        <h2>Tasks for the Week</h2>
+        <ul>
+          {tasksForWeek.map((task) => {
+            const checkCompleted = task.completed ? "bullet-completed" : "";
+            return (
+              <Link key={task._id} to={`/task/${task._id}`}>
+                <li key={task._id} className={checkCompleted}>
+                  {task.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/task">Add Task</Link>
+      </div>
     </div>
   );
 }

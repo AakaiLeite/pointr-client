@@ -63,38 +63,38 @@ function Daily() {
   // Render Page
   return (
     <div className="intervals-background">
-    <div className="intervals-container">
-          <h2>Events for Today</h2>
-          <ul>
-            {eventsForToday.map((event) => {
-              return (
-                <Link key={event._id} to={`/event/${event._id}`}>
-                  <li key={event._id}>
-                    {event.time}: {event.title}
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-          <Link to="/add/event">Add an Event</Link>
-        </div>
-        <div className="intervals-container">
-          <h2>Tasks for Today</h2>
-          <ul>
-            {tasksForToday.map((task) => {
-              const checkCompleted = task.completed ? "bullet-completed" : "";
-              return (
-                <Link key={task._id} to={`/task/${task._id}`}>
-                  <li key={task._id} className={checkCompleted}>
-                    {task.title}
-                  </li>
-                </Link>
-              );
-            })}
-          </ul>
-          <Link to="/add/task">Add a Task</Link>
-        </div>
-        
+      <div className="intervals-container">
+        <h2>Events for Today</h2>
+        <ul>
+          {eventsForToday.map((event) => {
+            const checkCompleted = event.completed ? "bullet-completed" : "";
+            return (
+              <Link key={event._id} to={`/event/${event._id}`}>
+                <li key={event._id} className={checkCompleted}>
+                  {event.time}: {event.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/event">Add an Event</Link>
+      </div>
+      <div className="intervals-container">
+        <h2>Tasks for Today</h2>
+        <ul>
+          {tasksForToday.map((task) => {
+            const checkCompleted = task.completed ? "bullet-completed" : "";
+            return (
+              <Link key={task._id} to={`/task/${task._id}`}>
+                <li key={task._id} className={checkCompleted}>
+                  {task.title}
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <Link to="/add/task">Add a Task</Link>
+      </div>
     </div>
   );
 }

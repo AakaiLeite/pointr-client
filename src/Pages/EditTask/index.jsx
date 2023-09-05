@@ -36,7 +36,7 @@ function EditTask() {
     if (name === "title") setTitle(value);
     if (name === "date") setDate(value);
     if (name === "description") setDescription(value);
-    if (name === "completed") setCompleted(value);
+    if (name === "completed") setCompleted(event.target.checked);
   };
 
   const handleSubmit = (event) => {
@@ -44,7 +44,7 @@ function EditTask() {
     taskService
       .updateTask(taskId, { title, date, description, completed })
       .then(() => {
-        navigate(`/motnhly`);
+        navigate(`/monthly`);
       })
       .catch((err) => console.error(err));
   };
@@ -64,9 +64,9 @@ function EditTask() {
   };
 
   return (
-    <div className="edit-task-background">
+    <div className="agenda-background">
       <h3>Edit Task</h3>
-      <div className="edit-task-form">
+      <div className="agenda-container">
         <form onSubmit={handleSubmit}>
           <label>
             Title
@@ -82,7 +82,7 @@ function EditTask() {
             <input
               type="text"
               name="date"
-              value={date}
+              placeholder="YYYY-MM-DD"
               onChange={handleChange}
             />
           </label>
