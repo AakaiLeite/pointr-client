@@ -3,8 +3,8 @@ import {Routes, Route} from "react-router-dom";
 import "./App.css";
 
 // Import Auth Middleware
-import IsUser from "./Components/isUser";
-import IsGuest from "./Components/isGuest";
+import IsUser from "./Components/IsUser";
+import IsGuest from "./Components/IsGuest";
 
 // Import Pages
 import Home from "./Pages/Home";
