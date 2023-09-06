@@ -66,13 +66,13 @@ function EventDetails() {
           <p>{event.time}</p>
           <p>{event.completed}</p>
           <div className="details-main-buttons">
-            <Link className="main-link-button" to={`/edit/event/${event._id}`}>
-              Edit Event
+            <Link to={`/edit/event/${event._id}`}>
+              <button>Edit Event</button>
             </Link>
             <button onClick={eventDelete}>Delete Event</button>
           </div>
         </div>
-        <div className="details-return-buttons">
+        <div className="return-link-button-box">
           <Link className="return-link-button" to="/monthly">
             Return to Monthly
           </Link>
