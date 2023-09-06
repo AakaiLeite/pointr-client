@@ -25,7 +25,7 @@ function AddEvent() {
         if (name === "date") setDate(value);
         if (name === "time") setTime(value);
         if (name === "description") setDescription(value);
-        if (name === "completed") setCompleted(value);
+        if (name === "completed") setCompleted(event.target.checked);
     };
 
     const handleSubmit = (event) => {

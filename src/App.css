@@ -64,7 +64,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-image: url("/public/images/home-background.jpg");
+  background-image: url("/images/home-background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -114,7 +114,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-image: url('/public/images/login-background.jpg');
+  background-image: url('/images/login-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: white;
@@ -174,7 +174,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-image: url('/public/images/signup-background.jpg');
+  background-image: url('/images/signup-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: white;
@@ -212,7 +212,7 @@
   flex-direction: row;
   height: 100vh;
   width: 100%;
-  background-image: url('/public/images/blue-background.jpg');
+  background-image: url('/images/blue-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: whitesmoke
@@ -261,7 +261,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-image: url('/public/images/leaves-background.jpg');
+  background-image: url('/images/leaves-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(228, 233, 237);
@@ -336,7 +336,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background-image: url('/public/images/leaves-background.jpg');
+  background-image: url('/images/leaves-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-color: rgb(228, 233, 237);

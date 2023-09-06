@@ -13,7 +13,7 @@ function Navbar() {
     <nav className="navbar">
     <Link to={`/`} className="navbar-img">
       <div className="navbar-img">
-        <img className="pointr-logo" src="/public/images/pointr-logo.png" alt="Pointr Logo" />
+        <img className="pointr-logo" src="/images/pointr-logo.png" alt="Pointr Logo" />
         <h5>Pointr</h5>
       </div>
       </Link>
