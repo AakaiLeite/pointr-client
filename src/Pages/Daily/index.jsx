@@ -55,20 +55,20 @@ function Daily() {
   });
 
   // Auto mark Events that are in the past as completed and update in database
- /*  eventsForToday.forEach((event) => {
-    const eventDate = new Date(event.date);
-    const today = new Date();
-    if (eventDate < today) {
+  const now = new Date();
+  eventsForToday.forEach((event) => {
+    const eventTime = new Date(event.date);
+    if (!event.completed && eventTime < now) {
       event.completed = true;
-      event.title = `${event.title} (Missed)`;
+      event.title = `${event.title} (Auto Completed)`;
+      eventService
+        .updateEvent(event._id, event)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => console.error(err));
     }
-
-    eventService
-      .updateEvent(event._id, event)
-      .then(() => {})
-      .catch((err) => console.error(err));
   });
- */
 
   // Format Event Time
   eventsForToday.forEach((event) => {
