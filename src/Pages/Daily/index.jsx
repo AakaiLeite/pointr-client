@@ -17,9 +17,8 @@ function Daily() {
   const [tasks, setTasks] = useState([]);
   const [events, setEvents] = useState([]);
 
-  // useEffect Hook
+  // useEffect Hook to fetch Tasks and Events from API Services
   useEffect(() => {
-    // Fetch Tasks and Events from API Services
     taskService
       .getAllTasks()
       .then((response) => {
@@ -33,21 +32,6 @@ function Daily() {
         setEvents(response.data);
       })
       .catch((err) => console.error(err));
-
-    // Auto mark Events that are in the past as completed and update in database
-    eventsForToday.forEach((event) => {
-      const eventDate = new Date(event.date);
-      const today = new Date();
-      if (eventDate < today) {
-        event.completed = true;
-        event.title = `${event.title} (Missed)`;
-      }
-
-      eventService
-        .updateEvent(event._id, event)
-        .then(() => {})
-        .catch((err) => console.error(err));
-    });
   }, []);
 
   // Filter Tasks, Notes, and Events for Today
@@ -68,6 +52,21 @@ function Daily() {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
     return dateA - dateB;
+  });
+
+  // Auto mark Events that are in the past as completed and update in database
+  eventsForToday.forEach((event) => {
+    const eventDate = new Date(event.date);
+    const today = new Date();
+    if (eventDate < today) {
+      event.completed = true;
+      event.title = `${event.title} (Missed)`;
+    }
+
+    eventService
+      .updateEvent(event._id, event)
+      .then(() => {})
+      .catch((err) => console.error(err));
   });
 
   // Format Event Time
