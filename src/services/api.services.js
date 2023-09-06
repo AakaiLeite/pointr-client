@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// API URL and stored token
+// API URL, Authtoken and User ID from token
 const API_URL = "http://localhost:5005";
 const storedToken = localStorage.getItem("authToken");
 
