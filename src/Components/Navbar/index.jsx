@@ -52,7 +52,7 @@ function Navbar() {
         )}
         {isLoggedIn && (
           <div className="navbar-auth">
-            <p>Hi {user && user.name}!</p>
+            <p>Hi {user && user.name} !</p>
             <p>
               <Link to="/login" onClick={logOutUser}>
                 Logout
