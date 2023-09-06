@@ -73,7 +73,7 @@ function Daily() {
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);
-    event.time = time.toLocaleTimeString();
+    event.time = time.toISOString().slice(11, 16);
   });
 
   // Render Page
