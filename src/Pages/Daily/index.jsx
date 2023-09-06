@@ -54,22 +54,6 @@ function Daily() {
     return dateA - dateB;
   });
 
-  // Auto mark Events that are in the past as completed and update in database
-  const now = new Date();
-  eventsForToday.forEach((event) => {
-    const eventTime = new Date(event.date);
-    if (!event.completed && eventTime < now) {
-      event.completed = true;
-      event.title = `${event.title} (Auto Completed)`;
-      eventService
-        .updateEvent(event._id, event)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => console.error(err));
-    }
-  });
-
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);

@@ -68,22 +68,6 @@ function Monthly() {
     event.monthDay = date.getDate();
   });
 
-  // Auto mark Events that are in the past as completed and update in database
-  const now = new Date();
-  eventsForMonth.forEach((event) => {
-    const eventTime = new Date(event.date);
-    if (!event.completed && eventTime < now) {
-      event.completed = true;
-      event.title = `${event.title} (Auto Completed)`;
-      eventService
-        .updateEvent(event._id, event)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((err) => console.error(err));
-    }
-  });
-
   // Render Page
   return (
     <div className="intervals-background">
