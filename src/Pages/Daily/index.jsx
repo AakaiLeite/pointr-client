@@ -69,6 +69,7 @@ function Daily() {
       .catch((err) => console.error(err));
   });
  */
+
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);
