@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/auth.context";
 
 // Defining the API base URL
-const API_URL = "http://localhost:5005";
+const API_URL = "https://pointr-backend.onrender.com";
 
 // React Page Component
 function Login() {

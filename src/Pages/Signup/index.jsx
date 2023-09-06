@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // Defining the API base URL
-const API_URL = "http://localhost:5005";
+const API_URL = "https://pointr-backend.onrender.com";
 
 function Signup() {
   // State Variables
