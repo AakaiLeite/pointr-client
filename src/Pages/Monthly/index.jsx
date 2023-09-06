@@ -62,21 +62,6 @@ function Monthly() {
     return dateA - dateB;
   });
 
-  // Auto mark Events that are in the past as completed and update in database
-  eventsForMonth.forEach((event) => {
-    const eventDate = new Date(event.date);
-    const today = new Date();
-    if (eventDate < today) {
-      event.completed = true;
-    }
-    eventService
-      .updateEvent(event._id, event)
-      .then(() => {
-        console.log("Event auto marked as completed due to date/time");
-      })
-      .catch((err) => console.error(err));
-  });
-
   // Add Day of Month to event object
   eventsForMonth.forEach((event) => {
     const date = new Date(event.date);

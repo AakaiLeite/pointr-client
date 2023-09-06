@@ -55,7 +55,7 @@ function Daily() {
   });
 
   // Auto mark Events that are in the past as completed and update in database
-  eventsForToday.forEach((event) => {
+ /*  eventsForToday.forEach((event) => {
     const eventDate = new Date(event.date);
     const today = new Date();
     if (eventDate < today) {
@@ -68,7 +68,7 @@ function Daily() {
       .then(() => {})
       .catch((err) => console.error(err));
   });
-
+ */
   // Format Event Time
   eventsForToday.forEach((event) => {
     const time = new Date(event.date);

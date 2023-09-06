@@ -63,21 +63,6 @@ function Weekly() {
     return dateA - dateB;
   });
 
-  // Auto mark Events that are in the past as completed
-  eventsForWeek.forEach((event) => {
-    const eventDate = new Date(event.date);
-    const today = new Date();
-    if (eventDate < today) {
-      event.completed = true;
-    }
-    eventService
-      .updateEvent(event._id, event)
-      .then(() => {
-        console.log("Event auto marked as completed due to date/time");
-      })
-      .catch((err) => console.error(err));
-  });
-
   // Add Day of the Week to event object
   eventsForWeek.forEach((event) => {
     const date = new Date(event.date);
