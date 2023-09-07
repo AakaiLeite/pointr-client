@@ -91,12 +91,18 @@
   justify-content: center;
   align-items: center;
   background: #379aff;
-  box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 7px 7px 1px rgba(0, 0, 0, 0.5);
   border: 0;
   border-radius: 5px;
   min-width: 120px;
   min-height: 40px;
   overflow: hidden;
+}
+
+.cta-button:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out 0s;
 }
 
 .cta-button a {
@@ -263,6 +269,12 @@
   font-family: "Hind Guntur", sans-serif;
   font-size: 14px;
   font-weight: normal;
+}
+
+.intervals-add-button:hover{
+  cursor: pointer;
+  transform: scale(1.05);
+  transition: all 0.2s ease-in-out 0s;
 }
 
 .agenda-background {
