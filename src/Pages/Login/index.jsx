@@ -35,7 +35,6 @@ function Login() {
       .then((response) => {
         storeToken(response.data.authToken);
         authenticateUser();
-        navigate("/monthly");
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;

@@ -2,7 +2,6 @@ import axios from "axios";
 
 // API URL, Authtoken and User ID from token
 const API_URL = "https://pointr-backend.onrender.com";
-const storedToken = localStorage.getItem("authToken");
 
 // API Service Classes
 // API service for Task model
@@ -10,7 +9,14 @@ class TaskService {
   constructor() {
     this.api = axios.create({
       baseURL: API_URL,
-      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    this.api.interceptors.request.use((config) => {
+      // Retrieve the JWT token from the local storage
+      const storedToken = localStorage.getItem("authToken");
+      if (storedToken) {
+        config.headers = { Authorization: `Bearer ${storedToken}` };
+      }
+      return config;
     });
   }
 
@@ -28,7 +34,14 @@ class EventService {
   constructor() {
     this.api = axios.create({
       baseURL: API_URL,
-      headers: { Authorization: `Bearer ${storedToken}` },
+    });
+    this.api.interceptors.request.use((config) => {
+      // Retrieve the JWT token from the local storage
+      const storedToken = localStorage.getItem("authToken");
+      if (storedToken) {
+        config.headers = { Authorization: `Bearer ${storedToken}` };
+      }
+      return config;
     });
   }
   // API service methods
