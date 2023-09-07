@@ -246,12 +246,12 @@
   color: black;
 }
 
-.bullet-completed {
-  text-decoration: line-through;
+.intervals-container a {
+  text-decoration: none;
 }
 
-.bullet-incomplete {
-  text-decoration: none;
+.bullet-completed {
+  text-decoration: line-through;
 }
 
 .intervals-add-button {
