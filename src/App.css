@@ -254,6 +254,17 @@
   text-decoration: none;
 }
 
+.intervals-add-button {
+  border-radius: 10px;
+  border-style: solid 1px rgb(245, 245, 245);
+  border-width: 1px;
+  margin: 6px;
+  padding: 6px;
+  font-family: "Hind Guntur", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+}
+
 .agenda-background {
   display: flex;
   justify-content: center;

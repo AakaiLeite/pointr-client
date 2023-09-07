@@ -79,7 +79,9 @@ function Daily() {
             );
           })}
         </ul>
-        <Link to="/add/event">Add an Event</Link>
+        <Link to="/add/event">
+        <button className="intervals-add-button">Add an Event</button>
+        </Link>
       </div>
       <div className="intervals-container">
         <h2>Tasks for Today</h2>
@@ -97,7 +99,9 @@ function Daily() {
             );
           })}
         </ul>
-        <Link to="/add/task">Add a Task</Link>
+        <Link to="/add/task">
+          <button className="intervals-add-button">Add a Task</button>
+        </Link>
       </div>
     </div>
   );
